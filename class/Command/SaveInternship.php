@@ -7,6 +7,7 @@ use \Intern\AgencyFactory;
 use \Intern\DatabaseStorage;
 use \Intern\ExternalDataProviderFactory;
 use \Intern\Exception\StudentNotFoundException;
+use \Intern\DepartmentFactory;
 
 /**
  * Controller class to save changes (on create or update) to an Internship
@@ -415,7 +416,8 @@ class SaveInternship {
 
         // If the background check or drug check status changed to true (computed earlier), then send a notification
         if($backgroundCheck || $drugCheck) {
-            $email = new \Intern\Email\BackgroundCheckEmail(\Intern\InternSettings::getInstance(), $i, $agency, $backgroundCheck, $drugCheck);
+            $department = DepartmentFactory::getDepartmentById($i->department_id);
+            $email = new \Intern\Email\BackgroundCheckEmail(\Intern\InternSettings::getInstance(), $i, $agency, $department, $backgroundCheck, $drugCheck);
             $email->send();
         }
 

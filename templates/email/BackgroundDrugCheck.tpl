@@ -6,6 +6,8 @@ Student
 --------
 Name: {NAME}
 Banner ID: {BANNER}
+Major: {MAJOR}
+Department: {DEPARTMENT}
 Term: {TERM}
 Level: {LEVEL}
 Email: {EMAIL}

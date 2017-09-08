@@ -5,6 +5,8 @@ use \Intern\Internship;
 use \Intern\Agency;
 use \Intern\InternSettings;
 use \Intern\Term;
+use \Intern\Department;
+use \Intern\DepartmentFactory;
 
 /**
  * Generates an email to the background check coordinator, notifying
@@ -32,11 +34,12 @@ class BackgroundCheckEmail extends Email{
     * @param bool $backgroundCheck
     * @param bool $drugCheck
     */
-    public function __construct(InternSettings $emailSettings, Internship $internship, Agency $agency, $backgroundCheck, $drugCheck) {
+    public function __construct(InternSettings $emailSettings, Internship $internship, Agency $agency, Department $department, $backgroundCheck, $drugCheck) {
         parent::__construct($emailSettings);
 
         $this->internship = $internship;
         $this->agency = $agency;
+        $this->department = $department;
         $this->backgroundCheck = $backgroundCheck;
         $this->drugCheck = $drugCheck;
     }
@@ -51,6 +54,8 @@ class BackgroundCheckEmail extends Email{
 
         $this->tpl['NAME'] = $this->internship->getFullName();
         $this->tpl['BANNER'] = $this->internship->banner;
+        $this->tpl['MAJOR'] = $this->internship->getMajorDescription();
+        $this->tpl['DEPARTMENT'] = $this->department->getName();
         $this->tpl['TERM'] = Term::rawToRead($this->internship->getTerm());
         $this->tpl['LEVEL'] = $this->internship->getLevel();
         $this->tpl['BIRTHDAY'] = $this->internship->getBirthDateFormatted();
