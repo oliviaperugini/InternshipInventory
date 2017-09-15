@@ -119,6 +119,9 @@ class Internship {
     // Form token
     public $form_token;
 
+    // Last time internship was modified
+    public $last_mod_time;
+
     /**
      * Constructs a new Internship object.
      */
@@ -1072,6 +1075,14 @@ class Internship {
 
     public function setDrugCheck($check){
         $this->drug_check = $check;
+    }
+
+    public function getLastModTime(){
+        return $this->last_mod_time;
+    }
+
+    public function setLastModTime($time){
+        $this->last_mod_time = $time;
     }
 
     /**
