@@ -149,6 +149,12 @@ class SaveInternship {
         $i->stipend = isset($_REQUEST['stipend']) && $i->paid;
         $i->pay_rate = self::trimField($_REQUEST['pay_rate']);
 
+
+        // Record last modified time of the internship and user who modified it.
+        //date_default_timezone_set("");
+        $i->last_mod_time = $_SERVER['REQUEST_TIME'];
+        $i->last_mod_time_user = \Current_User::getUserObj();
+
         if (\Current_User::isDeity()) {
             $i->term = $_REQUEST['term'];
         }

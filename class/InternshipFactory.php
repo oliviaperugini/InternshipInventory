@@ -78,7 +78,7 @@ class InternshipFactory {
         $stmt = $pdo->prepare("SELECT *
                                FROM intern_internship
                                WHERE state IN ('NewState', 'SigAuthReadyState')
-                                    AND last_mod_time ");
+                                    AND last_mod_time >= :time");
         //$stmt->execute(array('last_mod_time' =>));
         $stmt->setFetchMode(\PDO::FETCH_CLASS, 'Intern\InternshipRestored');
 

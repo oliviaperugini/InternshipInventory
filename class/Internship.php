@@ -119,8 +119,9 @@ class Internship {
     // Form token
     public $form_token;
 
-    // Last time internship was modified
+    // Last time internship was modified and user who modified it.
     public $last_mod_time;
+    public $last_mod_time_user;
 
     /**
      * Constructs a new Internship object.
@@ -1085,6 +1086,13 @@ class Internship {
         $this->last_mod_time = $time;
     }
 
+    public function getLastModTimeUser(){
+        return $this->last_mod_time_user;
+    }
+
+    public function setLastModTimeUser($user){
+        $this->last_mod_time_user = $user;
+    }
     /**
      * Sets the location state (i.e. One of the 50 states of the USA, not the approval status)
      */
