@@ -4,6 +4,7 @@ namespace Intern;
 
 use \phpws2\Database;
 
+
 class InternshipFactory {
 
     /**
