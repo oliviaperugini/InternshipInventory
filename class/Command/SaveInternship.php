@@ -152,7 +152,9 @@ class SaveInternship {
 
         // Record last modified time of the internship and user who modified it.
         $i->last_mod_time = $_SERVER['REQUEST_TIME'];
-        $i->last_mod_time_user = \Current_User::getUserObj();
+        //$i->last_mod_time_user = \Current_User::getUserObj();
+        $user = \Current_User::getUserObj();
+        $i->last_mod_time_user = $user->getUsername();
 
         if (\Current_User::isDeity()) {
             $i->term = $_REQUEST['term'];
