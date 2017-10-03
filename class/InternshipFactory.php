@@ -66,7 +66,7 @@ class InternshipFactory {
      * last modified time. Filter out internships that have already received
      * inactivity reminder emails. Filter out internships by state.
      *
-     * @param int $time last modified time
+     * @param int $time interval set for inactivity email
      * @return Array<Internship> Array of all Internship objects that need
      *         inactivity reminder email
      */
@@ -75,12 +75,15 @@ class InternshipFactory {
         $dc = Database::newDB();
         $pdo = $db->getPDO();
 
+        $current_time = time();
+        $difference = $current_time - $time;
+
         //statement to send to database
         $stmt = $pdo->prepare("SELECT *
                                FROM intern_internship
                                WHERE state IN ('NewState', 'SigAuthReadyState')
-                                    AND last_mod_time >= :time");
-        //$stmt->execute(array('last_mod_time' =>));
+                                    AND last_mod_time <= ($difference)");
+        $stmt->execute(array('last_mod_time' => $time));
         $stmt->setFetchMode(\PDO::FETCH_CLASS, 'Intern\InternshipRestored');
 
         return $stmt->fetchAll();

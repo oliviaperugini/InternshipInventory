@@ -119,7 +119,8 @@ class Internship {
     // Form token
     public $form_token;
 
-    // Last time internship was modified and user who modified it.
+    // Last time internship was modified and user who modified it
+    // Last mod time user is also the username for who to email
     public $last_mod_time;
     public $last_mod_time_user;
 
