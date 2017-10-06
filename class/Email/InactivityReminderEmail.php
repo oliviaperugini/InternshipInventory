@@ -22,7 +22,7 @@ class InactivityReminderEmail extends Email{
     }
 
     protected function getTemplateFileName() {
-        return 'email/InactivityReminder.tpl';
+        return 'email/InactivityReminderEmail.tpl';
     }
 
     protected function buildMessage()
