@@ -11,7 +11,8 @@ class InactivityReminder {
     public function execute()
     {
         // Set time interval you want (ex. 21 days, 14 days,..)
-        $time = days_to_seconds(21);
+        $days = 21;
+        $time = days_to_seconds($days);
         // call factory method with $time in param.,
         // returns list of internship objects.
         $email_list = InternshipFactory::getInternshipsByLastModTime($time);
@@ -22,14 +23,13 @@ class InactivityReminder {
         foreach ($email_list as $i) {
             // loop over each internship object
              $user = $i->getLastModTimeUser();
-             //$user_email = $user . "@appstate.edu";
+             //$date = date('m/d/Y h:i', $i->getLastModTime());
 
-             $email = new \Intern\Email\InactivityReminderEmail()
-
+             //pass in parameters
+             $email = new \Intern\Email\InactivityReminderEmail($emailSettings, $i, $days, $user);
+             $email->send();
 
         }
-        //call email class? send to list.
-
     }
 
     // Days must be number.
