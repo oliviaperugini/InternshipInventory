@@ -116,7 +116,7 @@ class SendPendingEnrollmentReminders
         // Auth for local testing. Uncomment for local testing.
         //$user->auth_script = 'local.php';
         //$user->auth_name = 'local';
-        
+
         //$user->login();
         $user->setLogged(true);
 
